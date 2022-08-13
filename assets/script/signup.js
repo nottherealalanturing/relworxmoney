@@ -8,13 +8,15 @@ const password_signin = document.getElementById("password_signin");
 
 signupForm.addEventListener("submit", (e) => {
   e.preventDefault();
+  users = JSON.parse(localStorage.getItem("userslist")) || [];
+
   const formdata = {
     name: fullname_signup.value,
     email: username_signup.value,
     password: password_signup.value,
     balance: 0,
+    account_number: users.length + 1,
   };
-  users = JSON.parse(localStorage.getItem("userslist")) || [];
   users.push(formdata);
   localStorage.setItem("userslist", JSON.stringify(users));
 });
@@ -33,6 +35,7 @@ signinForm.addEventListener("submit", (e) => {
           password: user.password,
           balance: user.balance,
           fullname: user.fullname,
+          account_number: user.account_number,
         })
       );
     }

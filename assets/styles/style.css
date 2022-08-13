@@ -9,11 +9,9 @@ ul, li, a{
     text-decoration: none;
 }
 
-/* .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-} */
+.logo {
+    padding-left: 25px;
+}
 
 .nav {
     display: flex;
@@ -22,12 +20,16 @@ ul, li, a{
 }
 
 .nav ul {
-    /* display: flex; */
-    gap: 25px;
+    gap: 5px;
+    padding-right: 25px;
 }
 
 .user-nav, .admin-nav, .nu-nav {
     display: none;
+}
+
+.nu-nav {
+    display: flex;
 }
 
 

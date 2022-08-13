@@ -1,0 +1,36 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul, li, a{
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.logo {
+    padding-left: 25px;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav ul {
+    gap: 5px;
+    padding-right: 25px;
+}
+
+.user-nav, .admin-nav, .nu-nav {
+    display: none;
+}
+
+.nu-nav {
+    display: flex;
+}
+
+
+

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relworx Money</title>
-    <link rel="stylesheet" href="./assets/styles/style.css">
+    <title>Login | Relworx Money</title>
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
    <div class="navbar">
@@ -39,17 +39,33 @@
 
         <ul class="nu-nav">
             <li>
-                <a href="./assets/pages/signin.html">Login</a>
+                <a href="./signin.html">Login</a>
             </li>
             <li>
-                <a href="./assets/pages/signup.html">Register</a>
+                <a href="./signup.html">Register</a>
             </li>
         </ul>
     </nav>
    </div>
-  <!--   <main>
-        <img src="./assets/images/money.svg" alt="hero">
-    </main> -->
-    <script src="./assets/script/app.js"></script>
+    <main>
+        <h1>Welcome to Relworx Money</h1>
+        <h2>Register to create an account</h2>
+        <form action="#" class="signup-form">
+            <label for="fullname_signup">
+                Fullname: <input type="text" id="fullname_signup">
+            </label>
+            <label for="username_signup">
+                Username: <input type="text" id="username_signup">
+            </label>
+            <label for="password_signup">
+                Password: <input type="password" id="password_signup">
+            </label>
+            <label for="repassword_signup">
+                Re-enter Password: <input type="password" id="repassword_signup">
+            </label>
+            <button type="submit">Create Account</button>
+        </form>
+    </main>
+    <script src="../assets/script/signup.js"></script>
 </body>
 </html>

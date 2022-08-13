@@ -1,0 +1,34 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul, li, a{
+    list-style-type: none;
+    text-decoration: none;
+}
+
+/* .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+} */
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav ul {
+    /* display: flex; */
+    gap: 25px;
+}
+
+.user-nav, .admin-nav, .nu-nav {
+    display: none;
+}
+
+
+

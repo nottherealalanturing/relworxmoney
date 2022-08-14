@@ -16,6 +16,7 @@ signinForm.addEventListener("submit", (e) => {
           password: user.password,
           balance: user.balance,
           fullname: user.fullname,
+          account_number: user.account_number,
         })
       );
       window.location.replace("/pages/userdashboard.html");

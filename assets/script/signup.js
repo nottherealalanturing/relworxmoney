@@ -17,6 +17,13 @@ signupForm.addEventListener("submit", (e) => {
     balance: 0,
     account_number: users.length + 1,
   };
+
+  if (users.length === 0) {
+    users.push(formdata);
+    localStorage.setItem("userslist", JSON.stringify(users));
+    window.location.replace("/pages/signin.html");
+  }
+
   users.forEach((user) => {
     if (user.email !== formdata.email) {
       users.push(formdata);

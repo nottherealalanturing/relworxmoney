@@ -8,6 +8,7 @@ const request = document.querySelector(".request-section");
 const transaction = document.querySelector(".transaction-section");
 const signoutbtn = document.getElementById("signoutbtn");
 const sendsection = document.querySelector(".send-form");
+const balancesection = document.querySelector(".balance-section");
 
 signoutbtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -110,3 +111,9 @@ sendsection.addEventListener("submit", (e) => {
   e.preventDefault();
   SendMoney(parseFloat(e.target[0].value), parseFloat(e.target[1].value));
 });
+
+/* Balance */
+balancesection.innerHTML = `<h1>
+Hello ${currentuser.username.toUpperCase()}, <br />
+Your current account balance is \$${currentuser.balance}.
+</h1>`;

@@ -153,8 +153,9 @@ sendsection.addEventListener("submit", (e) => {
 
 userbalancerefresh.addEventListener("click", () => {
   balancetext.innerHTML = `<h1>
-  Hello ${currentuser.email.toUpperCase()}, <br />
-  Your current account balance is $${currentuser.balance}.
+  Hello ${currentuser.email.toUpperCase()}, <br />,
+  Your account with account number ${currentuser.account_number}
+  currently connatains is $${currentuser.balance}.
   </h1>`;
 });
 

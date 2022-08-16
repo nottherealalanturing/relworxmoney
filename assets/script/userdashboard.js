@@ -8,7 +8,8 @@ const request = document.querySelector(".request-section");
 const transaction = document.querySelector(".transaction-section");
 const signoutbtn = document.getElementById("signoutbtn");
 const sendsection = document.querySelector(".send-form");
-const balancesection = document.querySelector(".balance-section");
+const userbalancerefresh = document.querySelector(".userbalancerefresh");
+const balancetext = document.querySelector(".balance-text");
 
 signoutbtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -110,10 +111,35 @@ sendsection.innerHTML = `<label for="accountno">Enter user account number: <inpu
 sendsection.addEventListener("submit", (e) => {
   e.preventDefault();
   SendMoney(parseFloat(e.target[0].value), parseFloat(e.target[1].value));
+  e.target[0].value = "";
+  e.target[1].value = "";
 });
 
 /* Balance */
-balancesection.innerHTML = `<h1>
-Hello ${currentuser.username.toUpperCase()}, <br />
-Your current account balance is \$${currentuser.balance}.
-</h1>`;
+
+userbalancerefresh.addEventListener("click", () => {
+  balancetext.innerHTML = `<h1>
+  Hello ${currentuser.username.toUpperCase()}, <br />
+  Your current account balance is \$${currentuser.balance}.
+  </h1>`;
+});
+
+window.addEventListener("load", function () {
+  const userNav = document.querySelector(".user-nav");
+  const adminNav = document.querySelector(".admin-nav");
+  const noneUser = document.querySelector(".nu-nav");
+
+  if (currentuser.role === "user") {
+    userNav.classList.remove("hide");
+    adminNav.classList.add("hide");
+    noneUser.classList.add("hide");
+  } else if (currentuser.role === "admin") {
+    userNav.classList.add("hide");
+    adminNav.classList.remove("hide");
+    noneUser.classList.add("hide");
+  } else {
+    userNav.classList.add("hide");
+    adminNav.classList.add("hide");
+    noneUser.classList.remove("hide");
+  }
+});

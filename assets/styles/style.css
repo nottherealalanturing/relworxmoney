@@ -31,10 +31,6 @@ a {
 .user-nav,
 .admin-nav,
 .nu-nav {
-  display: none;
-}
-
-.admin-nav {
   display: flex;
 }
 

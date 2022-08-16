@@ -1,65 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login | Relworx Money</title>
-    <link rel="stylesheet" href="../assets/styles/style.css">
-</head>
-<body>
-   <div class="navbar">
-    <nav class="nav">
+    <link rel="stylesheet" href="../assets/styles/style.css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <nav class="nav">
         <h1 class="logo">Relworx Money</h1>
         <ul class="user-nav">
-            <li>
-                <a href="/balance">Balance</a>
-            </li>
-            <li>
-                <a href="/send">Send</a>
-            </li>
-            <li>
-                <a href="/request">Request</a>
-            </li>
-            <li>
-                <a href="/transactions">Transactions</a>
-            </li>
-            <li>
-                <a href="/signout">Logout</a>
-            </li>
+          <li>
+            <a href="/balance">Balance</a>
+          </li>
+          <li>
+            <a href="/send">Send</a>
+          </li>
+          <li>
+            <a href="/request">Request</a>
+          </li>
+          <li>
+            <a href="/transactions">Transactions</a>
+          </li>
+          <li>
+            <a href="/signout">Logout</a>
+          </li>
         </ul>
 
         <ul class="admin-nav">
-            <li>
-                <a href="/topup"> TopUp</a>
-            </li>
-            <li>
-                <a href="/signout">Logout</a>
-            </li>
+          <li>
+            <a href="/topup"> TopUp</a>
+          </li>
+          <li>
+            <a href="/signout">Logout</a>
+          </li>
         </ul>
 
         <ul class="nu-nav">
-            <li>
-                <a href="./signin.html">Login</a>
-            </li>
-            <li>
-                <a href="./signup.html">Register</a>
-            </li>
+          <li>
+            <a href="./signin.html">Login</a>
+          </li>
+          <li>
+            <a href="./signup.html">Register</a>
+          </li>
         </ul>
-    </nav>
-   </div>
+      </nav>
+    </div>
     <main>
-        <h1>Welcome to Relworx Money</h1>
-        <h2>Please signin to continue</h2>
+      <div class="login-container">
+        <h1>Sign In</h1>
+        <p>Please login to continue.</p>
+        <hr />
         <form action="#" class="form_signin">
-            <label for="username_signin">
-                Username: <input type="text" id="username_signin">
-            </label>
-            <label for="password_signin">
-                Password: <input type="password" id="password_signin">
-            </label>
-            <button type="submit">Login</button>
+          <label for="username_signin">
+            Username: <input type="text" id="username_signin" />
+          </label>
+          <label for="password_signin">
+            Password: <input type="password" id="password_signin" />
+          </label>
+          <button type="submit" class="loginbtn">Login</button>
         </form>
+      </div>
     </main>
     <script src="../assets/script/signin.js"></script>
-</body>
+  </body>
 </html>

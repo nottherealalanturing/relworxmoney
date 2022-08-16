@@ -48,23 +48,26 @@
       </nav>
     </div>
     <main>
-      <h1>Welcome to Relworx Money</h1>
-      <h2>Register to create an account</h2>
-      <form action="#" class="signup-form">
-        <label for="fullname_signup">
-          Fullname: <input type="text" id="fullname_signup" />
-        </label>
-        <label for="username_signup">
-          Username: <input type="text" id="username_signup" />
-        </label>
-        <label for="password_signup">
-          Password: <input type="password" id="password_signup" />
-        </label>
-        <label for="repassword_signup">
-          Re-enter Password: <input type="password" id="repassword_signup" />
-        </label>
-        <button type="submit">Create Account</button>
-      </form>
+      <div class="signup-container">
+        <h1>Sign Up</h1>
+        <p>Please fill in this form to create an account.</p>
+        <hr />
+        <form action="#" class="signup-form">
+          <label for="fullname_signup">
+            YOUR NAME <input type="text" id="fullname_signup" />
+          </label>
+          <label for="username_signup">
+            USERNAME <input type="text" id="username_signup" />
+          </label>
+          <label for="password_signup">
+            PASSWORD <input type="password" id="password_signup" />
+          </label>
+          <label for="repassword_signup">
+            Re-enter PASSWORD <input type="password" id="repassword_signup" />
+          </label>
+          <button type="submit" class="signupbtn">CREATE ACCOUNT</button>
+        </form>
+      </div>
     </main>
     <script src="../assets/script/signup.js"></script>
   </body>

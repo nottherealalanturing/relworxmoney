@@ -15,6 +15,7 @@ signupForm.addEventListener('submit', (e) => {
     balance: 0,
     account_number: users.length + 1,
     role: 'user',
+    trades: [],
   };
 
   if (users.length === 0) {

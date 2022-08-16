@@ -80,24 +80,53 @@ const validateAccount = (acc) => {
   return valid;
 };
 
+const getAccountIndex = (arr, accnum) => {
+  let accountindex;
+  arr.forEach((item, index) => {
+    if (item.account_number === accnum) {
+      accountindex = index;
+    }
+  });
+  return accountindex;
+};
+
 /* Send Money */
 const SendMoney = (accnum, amount) => {
+  const tempUsers = JSON.parse(localStorage.getItem('userslist')) || [];
+
   if (!validateAccount(accnum)) {
     return 'invalid account number';
   }
 
-  const temp = [];
-  users.forEach((user) => {
-    if (user.account_number === accnum) {
-      temp.push({ ...user, balance: parseFloat(user.balance) + amount });
-      return;
-    }
-    temp.push(user);
-  });
+  const receiverindex = getAccountIndex(tempUsers, accnum);
 
-  users = temp;
-  localStorage.setItem('userslist', JSON.stringify(users));
-  return temp;
+  const receiver = tempUsers.splice(receiverindex, 1)[0];
+  if (receiver) {
+    receiver.balance = parseFloat(receiver.balance) + amount;
+  }
+
+  receiver.trades = [
+    ...receiver.trades,
+    {
+      sender: {
+        name: 'ADMIN',
+        amount,
+        accountnumber: 'ADMIN',
+      },
+      receiver: {
+        name: receiver.name,
+        amount,
+        accountnumber: receiver.account_number,
+      },
+    },
+  ];
+
+  tempUsers.push(receiver);
+  users = tempUsers;
+
+  localStorage.setItem('userslist', JSON.stringify(tempUsers));
+
+  return tempUsers;
 };
 
 sendsectionadmin.addEventListener('submit', (e) => {

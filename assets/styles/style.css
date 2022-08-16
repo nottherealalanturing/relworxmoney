@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 ul,
 li,
 a {
@@ -21,11 +25,21 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 0 10% 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(212, 203, 203);
 }
 
 .nav ul {
   gap: 5px;
+}
+
+#signoutbtn {
   padding-right: 25px;
+  color: rgb(73, 64, 64);
+  text-align: center;
+  text-decoration: none;
 }
 
 .user-nav,
@@ -36,4 +50,103 @@ a {
 
 .hide {
   display: none;
+}
+
+li a {
+  display: block;
+  color: rgb(73, 64, 64);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04aa6d;
+}
+
+#customers {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td,
+#customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+  background-color: #ddd;
+}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04aa6d;
+  color: white;
+}
+
+.topaccount-section,
+.login-container,
+.signup-container,
+.send-form {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.signup-container,
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-form-admin input,
+.send-form input,
+.form_signin input,
+.signup-form input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#sendbtn,
+.send-form-admin #sendbtn,
+.refreshbtn,
+.form_signin .loginbtn,
+.signup-form .signupbtn,
+.userbalancerefresh {
+  width: 100%;
+  background-color: #04aa6d;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+.balance-section {
+  margin: 0 auto;
+  width: 50%;
 }

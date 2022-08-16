@@ -6,6 +6,7 @@ const viewacc = document.querySelector(".viewaccount-section");
 const topacc = document.querySelector(".topaccount-section");
 const refreshbtn = document.querySelector(".refreshbtn");
 const table = document.getElementById("customers");
+const sendsectionadmin = document.querySelector(".send-form-admin");
 
 signoutbtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -39,6 +40,7 @@ navItems.forEach((item) => {
   });
 });
 
+/* Get users list */
 const getUsersData = () => {
   let users = JSON.parse(localStorage.getItem("userslist")) || [];
   let userstable = "";
@@ -79,11 +81,6 @@ const validateAccount = (acc) => {
 
 /* Send Money */
 const SendMoney = (accnum, amount) => {
-  if (currentuser.balance < amount) {
-    console.log("insufficient funds");
-    return;
-  }
-
   if (!validateAccount(accnum)) {
     console.log("invalid account number");
     return;
@@ -91,12 +88,6 @@ const SendMoney = (accnum, amount) => {
 
   let temp = [];
   users.forEach((user) => {
-    if (user.account_number === currentuser.account_number) {
-      tempuser = { ...user, balance: parseFloat(user.balance) - amount };
-      temp.push(tempuser);
-      currentuser = tempuser;
-      return;
-    }
     if (user.account_number === accnum) {
       temp.push({ ...user, balance: parseFloat(user.balance) + amount });
       return;
@@ -106,23 +97,11 @@ const SendMoney = (accnum, amount) => {
 
   users = temp;
   localStorage.setItem("userslist", JSON.stringify(users));
-  localStorage.setItem("userloggedin", JSON.stringify(currentuser));
 };
 
-sendsection.innerHTML = `<label for="accountno">Enter user account number: <input type="number" id="accountno"
-          /></label>
-          <label for="amount"
-            >Enter amount to send: <input type="number" id="amount"
-          /></label>
-          <button type="submit" id="sendbtn">Send</button>`;
-
-sendsection.addEventListener("submit", (e) => {
+sendsectionadmin.addEventListener("submit", (e) => {
   e.preventDefault();
   SendMoney(parseFloat(e.target[0].value), parseFloat(e.target[1].value));
+  e.target[0].value = "";
+  e.target[1].value = "";
 });
-
-/* Balance */
-balancesection.innerHTML = `<h1>
-Hello ${currentuser.username.toUpperCase()}, <br />
-Your current account balance is \$${currentuser.balance}.
-</h1>`;

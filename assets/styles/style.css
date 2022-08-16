@@ -125,6 +125,31 @@ li a:hover:not(.active) {
   box-sizing: border-box;
 }
 
+.signinhome {
+  background-color: #04aa6d;
+  padding: 20px;
+  align-self: center;
+}
+
+.index {
+  display: flex;
+  padding: 5%;
+  justify-content: center;
+  align-items: center;
+}
+
+.index img {
+  width: 50%;
+}
+
+.indexmain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
 #sendbtn,
 .send-form-admin #sendbtn,
 .refreshbtn,

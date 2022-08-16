@@ -25,11 +25,22 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 0 10% 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(212, 203, 203);
 }
 
 .nav ul {
   gap: 5px;
+}
+
+#signoutbtn {
   padding-right: 25px;
+  color: rgb(73, 64, 64);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
 .user-nav,
@@ -40,6 +51,22 @@ a {
 
 .hide {
   display: none;
+}
+
+li a {
+  display: block;
+  color: rgb(73, 64, 64);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04aa6d;
 }
 
 #customers {
@@ -71,7 +98,8 @@ a {
 
 .topaccount-section,
 .login-container,
-.signup-container {
+.signup-container,
+.send-form {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
@@ -98,10 +126,12 @@ a {
   box-sizing: border-box;
 }
 
+#sendbtn,
 .send-form-admin #sendbtn,
 .refreshbtn,
 .form_signin .loginbtn,
-.signup-form .signupbtn {
+.signup-form .signupbtn,
+.userbalancerefresh {
   width: 100%;
   background-color: #04aa6d;
   color: white;
@@ -115,4 +145,9 @@ a {
 hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
+}
+
+.balance-section {
+  margin: 0 auto;
+  width: 50%;
 }

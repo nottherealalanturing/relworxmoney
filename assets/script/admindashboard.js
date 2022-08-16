@@ -1,30 +1,30 @@
 /* current signed in user */
-const currentuser = JSON.parse(localStorage.getItem('userloggedin'));
-let users = JSON.parse(localStorage.getItem('userslist')) || [];
+const currentuser = JSON.parse(localStorage.getItem("userloggedin"));
+let users = JSON.parse(localStorage.getItem("userslist")) || [];
 
-const viewacc = document.querySelector('.viewaccount-section');
-const topacc = document.querySelector('.topaccount-section');
-const refreshbtn = document.querySelector('.refreshbtn');
-const table = document.getElementById('customers');
-const sendsectionadmin = document.querySelector('.send-form-admin');
-const signoutbtn = document.getElementById('signoutbtn');
+const viewacc = document.querySelector(".viewaccount-section");
+const topacc = document.querySelector(".topaccount-section");
+const refreshbtn = document.querySelector(".refreshbtn");
+const table = document.getElementById("customers");
+const sendsectionadmin = document.querySelector(".send-form-admin");
+const signoutbtn = document.getElementById("signoutbtn");
 
-signoutbtn.addEventListener('click', (e) => {
+signoutbtn.addEventListener("click", (e) => {
   e.preventDefault();
-  localStorage.setItem('userloggedin', JSON.stringify({}));
-  window.location.replace('/pages/signin.html');
+  localStorage.setItem("userloggedin", JSON.stringify({}));
+  window.location.replace("/pages/signin.html");
 });
 
 /* navigation */
 const navigateSPA = (key) => {
   switch (key) {
-    case 'viewaccount':
-      viewacc.classList.remove('hide');
-      topacc.classList.add('hide');
+    case "viewaccount":
+      viewacc.classList.remove("hide");
+      topacc.classList.add("hide");
       break;
-    case 'topaccount':
-      viewacc.classList.add('hide');
-      topacc.classList.remove('hide');
+    case "topaccount":
+      viewacc.classList.add("hide");
+      topacc.classList.remove("hide");
       break;
     default:
       break;
@@ -32,19 +32,19 @@ const navigateSPA = (key) => {
 };
 
 const navItems = Array.from(
-  document.querySelectorAll('.admin-nav')[0].children,
+  document.querySelectorAll(".admin-nav")[0].children
 );
 
 navItems.forEach((item) => {
-  item.addEventListener('click', (e) => {
+  item.addEventListener("click", (e) => {
     navigateSPA(e.target.parentElement.id);
   });
 });
 
 /* Get users list */
 const getUsersData = () => {
-  const users = JSON.parse(localStorage.getItem('userslist')) || [];
-  let userstable = '';
+  const users = JSON.parse(localStorage.getItem("userslist")) || [];
+  let userstable = "";
   users.forEach((user, index) => {
     userstable += `<tr>
     <td>${index + 1}</td>
@@ -66,7 +66,7 @@ const getUsersData = () => {
 </tr> ${userstable}`;
 };
 
-refreshbtn.addEventListener('click', () => getUsersData());
+refreshbtn.addEventListener("click", () => getUsersData());
 
 /* user functions */
 
@@ -80,53 +80,82 @@ const validateAccount = (acc) => {
   return valid;
 };
 
-/* Send Money */
-const SendMoney = (accnum, amount) => {
-  if (!validateAccount(accnum)) {
-    return 'invalid account number';
-  }
-
-  const temp = [];
-  users.forEach((user) => {
-    if (user.account_number === accnum) {
-      temp.push({ ...user, balance: parseFloat(user.balance) + amount });
-      return;
+const getAccountIndex = (arr, accnum) => {
+  let accountindex;
+  arr.forEach((item, index) => {
+    if (item.account_number === accnum) {
+      accountindex = index;
     }
-    temp.push(user);
   });
-
-  users = temp;
-  localStorage.setItem('userslist', JSON.stringify(users));
-  return temp;
+  return accountindex;
 };
 
-sendsectionadmin.addEventListener('submit', (e) => {
+/* Send Money */
+const SendMoney = (accnum, amount) => {
+  const tempUsers = JSON.parse(localStorage.getItem("userslist")) || [];
+
+  if (!validateAccount(accnum)) {
+    return "invalid account number";
+  }
+
+  const receiverindex = getAccountIndex(tempUsers, accnum);
+
+  const receiver = tempUsers.splice(receiverindex, 1)[0];
+  if (receiver) {
+    receiver.balance = parseFloat(receiver.balance) + amount;
+  }
+
+  receiver.trades = [
+    ...receiver.trades,
+    {
+      sender: {
+        name: "ADMIN",
+        amount,
+        accountnumber: "ADMIN",
+      },
+      receiver: {
+        name: receiver.name,
+        amount,
+        accountnumber: receiver.account_number,
+      },
+    },
+  ];
+
+  tempUsers.push(receiver);
+  users = tempUsers;
+
+  localStorage.setItem("userslist", JSON.stringify(tempUsers));
+
+  return tempUsers;
+};
+
+sendsectionadmin.addEventListener("submit", (e) => {
   e.preventDefault();
   SendMoney(parseFloat(e.target[0].value), parseFloat(e.target[1].value));
-  e.target[0].value = '';
-  e.target[1].value = '';
+  e.target[0].value = "";
+  e.target[1].value = "";
 });
 
-window.addEventListener('load', () => {
-  const userNav = document.querySelector('.user-nav');
-  const adminNav = document.querySelector('.admin-nav');
-  const noneUser = document.querySelector('.nu-nav');
+window.addEventListener("load", () => {
+  const userNav = document.querySelector(".user-nav");
+  const adminNav = document.querySelector(".admin-nav");
+  const noneUser = document.querySelector(".nu-nav");
 
-  if (currentuser.role === 'user') {
-    userNav.classList.remove('hide');
-    adminNav.classList.add('hide');
-    noneUser.classList.add('hide');
-  } else if (currentuser.role === 'admin') {
-    userNav.classList.add('hide');
-    adminNav.classList.remove('hide');
-    noneUser.classList.add('hide');
+  if (currentuser.role === "user") {
+    userNav.classList.remove("hide");
+    adminNav.classList.add("hide");
+    noneUser.classList.add("hide");
+  } else if (currentuser.role === "admin") {
+    userNav.classList.add("hide");
+    adminNav.classList.remove("hide");
+    noneUser.classList.add("hide");
   } else {
-    userNav.classList.add('hide');
-    adminNav.classList.add('hide');
-    noneUser.classList.remove('hide');
+    userNav.classList.add("hide");
+    adminNav.classList.add("hide");
+    noneUser.classList.remove("hide");
   }
 
   if (currentuser === {}) {
-    window.location.replace('/pages/signin.html');
+    window.location.replace("/pages/signin.html");
   }
 });

@@ -4,12 +4,13 @@ let users = JSON.parse(localStorage.getItem("userslist")) || [];
 
 const balance = document.querySelector(".balance-section");
 const send = document.querySelector(".send-section");
-const request = document.querySelector(".request-section");
 const transaction = document.querySelector(".transaction-section");
 const signoutbtn = document.getElementById("signoutbtn");
 const sendsection = document.querySelector(".send-form");
 const userbalancerefresh = document.querySelector(".userbalancerefresh");
 const balancetext = document.querySelector(".balance-text");
+const transactions = document.getElementById("transactions");
+const transactionsbtn = document.querySelector(".transactionsbtn");
 
 signoutbtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -82,18 +83,23 @@ const SendMoney = (accnum, amount) => {
   }
 
   const senderindex = getAccountIndex(tempUsers, currentuser.account_number);
-  const receiverindex = getAccountIndex(tempUsers, accnum);
 
   const sender = tempUsers.splice(senderindex, 1)[0];
   if (sender) {
     sender.balance = parseFloat(sender.balance) - amount;
   }
 
+  const receiverindex = getAccountIndex(tempUsers, accnum);
+
   const receiver = tempUsers.splice(receiverindex, 1)[0];
   if (receiver) {
     receiver.balance = parseFloat(receiver.balance) + amount;
   }
-
+  console.log(sender);
+  console.log(senderindex);
+  console.log(receiver);
+  console.log(receiverindex);
+  console.log(tempUsers);
   sender.trades = [
     ...sender.trades,
     {
@@ -128,6 +134,8 @@ const SendMoney = (accnum, amount) => {
   tempUsers.push(sender);
   tempUsers.push(receiver);
   users = tempUsers;
+  console.log(tempUsers);
+
   localStorage.setItem("userslist", JSON.stringify(tempUsers));
   localStorage.setItem("userloggedin", JSON.stringify(sender));
 };
@@ -154,6 +162,35 @@ userbalancerefresh.addEventListener("click", () => {
   Your current account balance is $${currentuser.balance}.
   </h1>`;
 });
+
+/* Get transactions */
+const getTransactions = () => {
+  const usertransactions = currentuser.trades;
+  let userstable = "";
+  usertransactions.forEach((transaction, index) => {
+    userstable += `<tr>
+    <td>${index + 1}</td>
+    <td>${transaction.sender.name}</td>
+    <td>${transaction.sender.accountnumber}</td>
+    <td>${transaction.sender.amount}</td>
+    <td>${transaction.receiver.name}</td>
+    <td>${transaction.receiver.accountnumber}</td>
+    <td>${transaction.receiver.amount}</td>
+  </tr>`;
+  });
+
+  transactions.innerHTML = `<tr>
+  <th>id</th>
+  <th>Sender's Name</th>
+  <th>Sender's Account Number</th>
+  <th>Amount Sent</th>
+  <th>Receiver's Name</th>
+  <th>Receiver's Account Number</th>
+  <th>Amount Sent</th>
+</tr> ${userstable}`;
+};
+
+transactionsbtn.addEventListener("click", () => getTransactions());
 
 window.addEventListener("load", () => {
   const userNav = document.querySelector(".user-nav");

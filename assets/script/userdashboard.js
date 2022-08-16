@@ -142,4 +142,8 @@ window.addEventListener("load", function () {
     adminNav.classList.add("hide");
     noneUser.classList.remove("hide");
   }
+
+  if (currentuser === {}) {
+    window.location.replace("/pages/signin.html");
+  }
 });

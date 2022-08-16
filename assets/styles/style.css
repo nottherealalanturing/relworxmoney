@@ -129,6 +129,7 @@ li a:hover:not(.active) {
   background-color: #04aa6d;
   padding: 20px;
   align-self: center;
+  color: rgb(73, 64, 64);
 }
 
 .index {
@@ -148,6 +149,7 @@ li a:hover:not(.active) {
   justify-content: center;
   align-items: center;
   gap: 5px;
+  color: rgb(73, 64, 64);
 }
 
 #sendbtn,

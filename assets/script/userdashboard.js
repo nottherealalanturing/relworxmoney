@@ -95,11 +95,7 @@ const SendMoney = (accnum, amount) => {
   if (receiver) {
     receiver.balance = parseFloat(receiver.balance) + amount;
   }
-  console.log(sender);
-  console.log(senderindex);
-  console.log(receiver);
-  console.log(receiverindex);
-  console.log(tempUsers);
+
   sender.trades = [
     ...sender.trades,
     {
@@ -134,7 +130,6 @@ const SendMoney = (accnum, amount) => {
   tempUsers.push(sender);
   tempUsers.push(receiver);
   users = tempUsers;
-  console.log(tempUsers);
 
   localStorage.setItem("userslist", JSON.stringify(tempUsers));
   localStorage.setItem("userloggedin", JSON.stringify(sender));

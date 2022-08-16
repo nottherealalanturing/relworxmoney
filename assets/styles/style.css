@@ -25,7 +25,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 0 10% 0;
+  margin: 0 0 5% 0;
   padding: 0;
   overflow: hidden;
   background-color: rgb(212, 203, 203);
@@ -68,25 +68,31 @@ li a:hover:not(.active) {
   background-color: #04aa6d;
 }
 
-#customers {
+#customers,
+#transactions {
   border-collapse: collapse;
   width: 100%;
 }
 
 #customers td,
-#customers th {
+#customers th,
+#transactions td,
+#transactions th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
+#transactions tr:nth-child(even),
 #customers tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
+#transactions tr:hover,
 #customers tr:hover {
   background-color: #ddd;
 }
 
+#transactions th,
 #customers th {
   padding-top: 12px;
   padding-bottom: 12px;
@@ -157,7 +163,8 @@ li a:hover:not(.active) {
 .refreshbtn,
 .form_signin .loginbtn,
 .signup-form .signupbtn,
-.userbalancerefresh {
+.userbalancerefresh,
+.transactionsbtn {
   width: 100%;
   background-color: #04aa6d;
   color: white;

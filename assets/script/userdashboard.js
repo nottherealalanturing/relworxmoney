@@ -1,7 +1,8 @@
 /* current signed in user */
 const currentuser = JSON.parse(localStorage.getItem('userloggedin'));
-let users = JSON.parse(localStorage.getItem('userslist')) || [];
 
+/* DOM ELEMENTS */
+let users = JSON.parse(localStorage.getItem('userslist')) || [];
 const balance = document.querySelector('.balance-section');
 const send = document.querySelector('.send-section');
 const transaction = document.querySelector('.transaction-section');
@@ -12,10 +13,9 @@ const balancetext = document.querySelector('.balance-text');
 const transactions = document.getElementById('transactions');
 const transactionsbtn = document.querySelector('.transactionsbtn');
 
-signoutbtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  localStorage.setItem('userloggedin', JSON.stringify({}));
-  window.location.replace('/pages/signin.html');
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
 });
 
 /* navigation */
@@ -42,12 +42,6 @@ const navigateSPA = (key) => {
 };
 
 const navItems = Array.from(document.querySelectorAll('.user-nav')[0].children);
-
-navItems.forEach((item) => {
-  item.addEventListener('click', (e) => {
-    navigateSPA(e.target.parentElement.id);
-  });
-});
 
 /* user functions */
 
@@ -154,9 +148,9 @@ sendsection.addEventListener('submit', (e) => {
 
 userbalancerefresh.addEventListener('click', () => {
   balancetext.innerHTML = `<h1>
-  Hello ${currentuser.email.toUpperCase()}, <br />,
-  Your account with account number ${currentuser.account_number}
-  currently connatains is $${currentuser.balance}.
+  Hello ${currentuser.email.toUpperCase()}, <br />
+  Your account with account number ${currentuser.account_number}, <br />
+  currently contains is ${formatter.format(currentuser.balance)}.
   </h1>`;
 });
 
@@ -169,10 +163,10 @@ const getTransactions = () => {
     <td>${index + 1}</td>
     <td>${transaction.sender.name}</td>
     <td>${transaction.sender.accountnumber}</td>
-    <td>${transaction.sender.amount}</td>
+    <td>${formatter.format(transaction.sender.amount)}</td>
     <td>${transaction.receiver.name}</td>
     <td>${transaction.receiver.accountnumber}</td>
-    <td>${transaction.receiver.amount}</td>
+    <td>${formatter.format(transaction.receiver.amount)}</td>
   </tr>`;
   });
 
@@ -188,6 +182,18 @@ const getTransactions = () => {
 };
 
 transactionsbtn.addEventListener('click', () => getTransactions());
+
+navItems.forEach((item) => {
+  item.addEventListener('click', (e) => {
+    navigateSPA(e.target.parentElement.id);
+  });
+});
+
+signoutbtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  localStorage.setItem('userloggedin', JSON.stringify({}));
+  window.location.replace('/pages/signin.html');
+});
 
 window.addEventListener('load', () => {
   const userNav = document.querySelector('.user-nav');

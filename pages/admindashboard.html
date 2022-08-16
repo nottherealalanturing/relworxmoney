@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="pagetitle">Relworx Money</title>
+    <link rel="stylesheet" href="../assets/styles/style.css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <nav class="nav">
+        <h1 class="logo">Relworx Money</h1>
+        <ul class="admin-nav hide">
+          <li id="viewaccount">
+            <a href="#">View Account</a>
+          </li>
+          <li id="topaccount">
+            <a href="#">Top Account</a>
+          </li>
+        </ul>
+        <ul class="user-nav"></ul>
+        <ul class="nu-nav"></ul>
+        <a href="#" id="signoutbtn">Logout</a>
+      </nav>
+    </div>
+    <main>
+      <div class="viewaccount-section">
+        <table id="customers"></table>
+        <button type="button" class="refreshbtn">refresh list</button>
+      </div>
+      <div class="topaccount-section hide">
+        <form action="#" class="send-form-admin">
+          <label for="accountno"
+            >Enter user account number: <input type="number" id="accountno"
+          /></label>
+          <label for="amount"
+            >Enter amount to top up: <input type="number" id="amount"
+          /></label>
+          <button type="submit" id="sendbtn">Send</button>
+        </form>
+      </div>
+    </main>
+    <script src="../assets/script/admindashboard.js"></script>
+  </body>
+</html>

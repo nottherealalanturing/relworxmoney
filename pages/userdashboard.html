@@ -11,25 +11,33 @@
       <nav class="nav">
         <h1 class="logo">Relworx Money</h1>
         <ul class="user-nav">
-          <li>
-            <a href="/balance">Balance</a>
+          <li id="balance">
+            <a href="#">Balance</a>
           </li>
-          <li>
-            <a href="/send">Send</a>
+          <li id="send">
+            <a href="#">Send</a>
           </li>
-          <li>
-            <a href="/request">Request</a>
-          </li>
-          <li>
-            <a href="/transactions">Transactions</a>
-          </li>
-          <li>
-            <a href="/signout" id="signoutbtn">Logout</a>
+          <li id="transaction">
+            <a href="#">Transactions</a>
           </li>
         </ul>
+        <ul class="admin-nav"></ul>
+        <ul class="nu-nav"></ul>
+        <a href="#" id="signoutbtn">Logout</a>
       </nav>
     </div>
-    <main></main>
+    <main>
+      <div class="balance-section">
+        <span class="balance-text"></span>
+        <button type="button" class="userbalancerefresh">
+          Refresh Balance
+        </button>
+      </div>
+      <div class="send-section hide">
+        <form action="#" class="send-form"></form>
+      </div>
+      <div class="transaction-section hide">transactions</div>
+    </main>
     <script src="../assets/script/userdashboard.js"></script>
   </body>
 </html>

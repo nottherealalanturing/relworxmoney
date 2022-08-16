@@ -21,7 +21,7 @@ To get a local copy up and running follow these simple example steps.
 - Open the command prompt in this directory.
 - Write `git clone https://github.com/nottherealalanturing/relworxmoney.git`.
 - Go to the repository folder in your command prompt `cd relworxmoney`.
-- open the index.html file with liveserver.
+- open the index.html file with Liveserver.
 
 ## Author
 

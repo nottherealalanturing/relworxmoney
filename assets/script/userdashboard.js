@@ -1,50 +1,50 @@
 /* current signed in user */
-let currentuser = JSON.parse(localStorage.getItem("userloggedin"));
-let users = JSON.parse(localStorage.getItem("userslist")) || [];
+const currentuser = JSON.parse(localStorage.getItem('userloggedin'));
+let users = JSON.parse(localStorage.getItem('userslist')) || [];
 
-const balance = document.querySelector(".balance-section");
-const send = document.querySelector(".send-section");
-const transaction = document.querySelector(".transaction-section");
-const signoutbtn = document.getElementById("signoutbtn");
-const sendsection = document.querySelector(".send-form");
-const userbalancerefresh = document.querySelector(".userbalancerefresh");
-const balancetext = document.querySelector(".balance-text");
-const transactions = document.getElementById("transactions");
-const transactionsbtn = document.querySelector(".transactionsbtn");
+const balance = document.querySelector('.balance-section');
+const send = document.querySelector('.send-section');
+const transaction = document.querySelector('.transaction-section');
+const signoutbtn = document.getElementById('signoutbtn');
+const sendsection = document.querySelector('.send-form');
+const userbalancerefresh = document.querySelector('.userbalancerefresh');
+const balancetext = document.querySelector('.balance-text');
+const transactions = document.getElementById('transactions');
+const transactionsbtn = document.querySelector('.transactionsbtn');
 
-signoutbtn.addEventListener("click", (e) => {
+signoutbtn.addEventListener('click', (e) => {
   e.preventDefault();
-  localStorage.setItem("userloggedin", JSON.stringify({}));
-  window.location.replace("/pages/signin.html");
+  localStorage.setItem('userloggedin', JSON.stringify({}));
+  window.location.replace('/pages/signin.html');
 });
 
 /* navigation */
 const navigateSPA = (key) => {
   switch (key) {
-    case "balance":
-      balance.classList.remove("hide");
-      send.classList.add("hide");
-      transaction.classList.add("hide");
+    case 'balance':
+      balance.classList.remove('hide');
+      send.classList.add('hide');
+      transaction.classList.add('hide');
       break;
-    case "send":
-      balance.classList.add("hide");
-      send.classList.remove("hide");
-      transaction.classList.add("hide");
+    case 'send':
+      balance.classList.add('hide');
+      send.classList.remove('hide');
+      transaction.classList.add('hide');
       break;
-    case "transaction":
-      balance.classList.add("hide");
-      send.classList.add("hide");
-      transaction.classList.remove("hide");
+    case 'transaction':
+      balance.classList.add('hide');
+      send.classList.add('hide');
+      transaction.classList.remove('hide');
       break;
     default:
       break;
   }
 };
 
-const navItems = Array.from(document.querySelectorAll(".user-nav")[0].children);
+const navItems = Array.from(document.querySelectorAll('.user-nav')[0].children);
 
 navItems.forEach((item) => {
-  item.addEventListener("click", (e) => {
+  item.addEventListener('click', (e) => {
     navigateSPA(e.target.parentElement.id);
   });
 });
@@ -73,13 +73,13 @@ const getAccountIndex = (arr, accnum) => {
 
 /* Send Money */
 const SendMoney = (accnum, amount) => {
-  const tempUsers = JSON.parse(localStorage.getItem("userslist")) || [];
+  const tempUsers = JSON.parse(localStorage.getItem('userslist')) || [];
   if (currentuser.balance < amount) {
-    return "insufficient funds";
+    return 'insufficient funds';
   }
 
   if (!validateAccount(accnum)) {
-    return "invalid account number";
+    return 'invalid account number';
   }
 
   const senderindex = getAccountIndex(tempUsers, currentuser.account_number);
@@ -131,8 +131,9 @@ const SendMoney = (accnum, amount) => {
   tempUsers.push(receiver);
   users = tempUsers;
 
-  localStorage.setItem("userslist", JSON.stringify(tempUsers));
-  localStorage.setItem("userloggedin", JSON.stringify(sender));
+  localStorage.setItem('userslist', JSON.stringify(tempUsers));
+  localStorage.setItem('userloggedin', JSON.stringify(sender));
+  return tempUsers;
 };
 
 sendsection.innerHTML = `<label for='accountno'>Enter user account number: <input type="number" id="accountno"
@@ -142,16 +143,16 @@ sendsection.innerHTML = `<label for='accountno'>Enter user account number: <inpu
           /></label>
           <button type="submit" id="sendbtn">Send</button>`;
 
-sendsection.addEventListener("submit", (e) => {
+sendsection.addEventListener('submit', (e) => {
   e.preventDefault();
   SendMoney(parseFloat(e.target[0].value), parseFloat(e.target[1].value));
-  e.target[0].value = "";
-  e.target[1].value = "";
+  e.target[0].value = '';
+  e.target[1].value = '';
 });
 
 /* Balance */
 
-userbalancerefresh.addEventListener("click", () => {
+userbalancerefresh.addEventListener('click', () => {
   balancetext.innerHTML = `<h1>
   Hello ${currentuser.email.toUpperCase()}, <br />,
   Your account with account number ${currentuser.account_number}
@@ -162,7 +163,7 @@ userbalancerefresh.addEventListener("click", () => {
 /* Get transactions */
 const getTransactions = () => {
   const usertransactions = currentuser.trades;
-  let userstable = "";
+  let userstable = '';
   usertransactions.forEach((transaction, index) => {
     userstable += `<tr>
     <td>${index + 1}</td>
@@ -186,28 +187,28 @@ const getTransactions = () => {
 </tr> ${userstable}`;
 };
 
-transactionsbtn.addEventListener("click", () => getTransactions());
+transactionsbtn.addEventListener('click', () => getTransactions());
 
-window.addEventListener("load", () => {
-  const userNav = document.querySelector(".user-nav");
-  const adminNav = document.querySelector(".admin-nav");
-  const noneUser = document.querySelector(".nu-nav");
+window.addEventListener('load', () => {
+  const userNav = document.querySelector('.user-nav');
+  const adminNav = document.querySelector('.admin-nav');
+  const noneUser = document.querySelector('.nu-nav');
 
-  if (currentuser.role === "user") {
-    userNav.classList.remove("hide");
-    adminNav.classList.add("hide");
-    noneUser.classList.add("hide");
-  } else if (currentuser.role === "admin") {
-    userNav.classList.add("hide");
-    adminNav.classList.remove("hide");
-    noneUser.classList.add("hide");
+  if (currentuser.role === 'user') {
+    userNav.classList.remove('hide');
+    adminNav.classList.add('hide');
+    noneUser.classList.add('hide');
+  } else if (currentuser.role === 'admin') {
+    userNav.classList.add('hide');
+    adminNav.classList.remove('hide');
+    noneUser.classList.add('hide');
   } else {
-    userNav.classList.add("hide");
-    adminNav.classList.add("hide");
-    noneUser.classList.remove("hide");
+    userNav.classList.add('hide');
+    adminNav.classList.add('hide');
+    noneUser.classList.remove('hide');
   }
 
   if (currentuser === {}) {
-    window.location.replace("/pages/signin.html");
+    window.location.replace('/pages/signin.html');
   }
 });

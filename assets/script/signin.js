@@ -13,12 +13,13 @@ signinForm.addEventListener('submit', (e) => {
     localStorage.setItem(
       'userloggedin',
       JSON.stringify({
-        username: 'admin',
+        email: 'admin',
         password: 'admin',
         balance: 'infinite',
         fullname: 'admin',
         account_number: '0',
         role: 'admin',
+        trades: [{}],
       }),
     );
     window.location.replace('/pages/admindashboard.html');
@@ -30,12 +31,13 @@ signinForm.addEventListener('submit', (e) => {
       localStorage.setItem(
         'userloggedin',
         JSON.stringify({
-          username: user.email,
+          email: user.email,
           password: user.password,
           balance: user.balance,
           fullname: user.fullname,
           account_number: user.account_number,
           role: 'user',
+          trades: [...user.trades],
         }),
       );
       window.location.replace('/pages/userdashboard.html');

@@ -4,9 +4,9 @@ Relworx Money is a basic app prototype to demonstrate how people can send and re
 
 ## Built With
 
-- [HTML](https://a.org/)
-- [CSS](https://a.org/)
-- [Javascript](https://a.com/)
+- [HTML](https://html.org/)
+- [CSS](https://css.org/)
+- [Javascript](https://ecma.com/)
 
 ## Live Demo
 

@@ -10,7 +10,7 @@ Relworx Money is a basic app prototype to demonstrate how people can send and re
 
 ## Live Demo
 
-[Live Demo Link](https://relxmoney.netlify.app/)
+[Live Link](https://relxmoney.netlify.app/)
 
 ## Getting Started
 

@@ -1,6 +1,6 @@
 # Relworx Money
 
-Relworx Money is a basic app prototype to demonstrate how people can send and receive money.
+A basic app prototype to demonstrate how people can send and receive money.
 
 ## Built With
 
